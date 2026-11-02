@@ -1,0 +1,1076 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="VerseForge Studio | AI Song & Rap Lyric Composer + Web Audio Beat Synth">
+  <!-- Top Navigation Bar -->
+  <header class="border-b border-white/10 bg-slate-950/80 backdrop-blur-md sticky top-0 z-50 px-4 lg:px-8 py-3.5">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-purple-600 via-pink-500 to-amber-400 p-[1px] flex items-center justify-center shadow-lg shadow-purple-500/20">
+          <div class="w-full h-full bg-slate-950 rounded-[11px] flex items-center justify-center">
+            <span class="text-xl">🎙️</span>
+          </div>
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <h1 class="font-extrabold text-lg tracking-tight text-white flex items-center gap-2">
+              VerseForge <span class="text-xs px-2 py-0.5 rounded-full font-mono bg-purple-500/20 text-purple-300 border border-purple-500/30">STUDIO v2.0</span>
+            </h1>
+          </div>
+          <p class="text-xs text-slate-400 hidden sm:block">Lyric Architect & Integrated Web Audio Beat Engine</p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-2 text-xs">
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-medium">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          Audio Engine Ready
+        </span>
+        <a href="#beat-station" class="hidden md:inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 transition">
+          <span>🎧 Beat Station</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Studio Workspace -->
+  <main class="max-w-7xl mx-auto w-full px-4 lg:px-8 py-6 flex-1 flex flex-col gap-6">
+    
+    <!-- Top Hero Banner -->
+    <div class="glass-panel rounded-2xl p-6 relative overflow-hidden border border-white/10">
+      <div class="absolute -right-10 -bottom-10 w-64 h-64 bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+          <div class="flex items-center gap-2 mb-1">
+            <span class="text-xs font-mono font-semibold tracking-wider uppercase text-purple-400 bg-purple-950/60 px-2 py-0.5 rounded border border-purple-800/40">
+              Songwriter & Rap Specialist
+            </span>
+            <span class="text-xs text-slate-400">• High-Definition Meter, Chords & Quotable Bars</span>
+          </div>
+          <h2 class="text-2xl lg:text-3xl font-extrabold text-white tracking-tight">
+            Compose Radio Songs or Hard Rap with Built-in Beat Integration
+          </h2>
+          <p class="text-sm text-slate-300 mt-1 max-w-2xl">
+            Enter your keywords and mood (soft, hard, melodic). Generate professional verses, flow switches, beat drops, and chord charts, then play or export matching synthesized beats right in your browser.
+          </p>
+        </div>
+        <div class="flex items-center gap-2 flex-wrap">
+          <div class="flex items-center gap-1 text-xs bg-slate-900/80 px-3 py-2 rounded-xl border border-white/5">
+            <span class="text-purple-400 font-bold">100%</span>
+            <span class="text-slate-400">Offline & Fast</span>
+          </div>
+          <div class="flex items-center gap-1 text-xs bg-slate-900/80 px-3 py-2 rounded-xl border border-white/5">
+            <span class="text-cyan-400 font-bold">WAV</span>
+            <span class="text-slate-400">Beat Exporter</span>
+          </div>
+          <div class="flex items-center gap-1 text-xs bg-slate-900/80 px-3 py-2 rounded-xl border border-white/5">
+            <span class="text-pink-400 font-bold">LIVE</span>
+            <span class="text-slate-400">Teleprompter Flow</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Grid: Left (Controls + Synth) | Right (Lyric Sheet & Flow Reader) -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+
+      <!-- LEFT COLUMN: Composer Controls + Beat Synthesizer (5 cols) -->
+      <div class="lg:col-span-5 flex flex-col gap-6">
+
+        <!-- 1. COMPOSER INPUT CONTROL PANEL -->
+        <div class="glass-panel rounded-2xl p-5 border border-white/10 flex flex-col gap-5 shadow-xl">
+          <div class="flex items-center justify-between border-b border-white/10 pb-3">
+            <h3 class="font-bold text-base text-white flex items-center gap-2">
+              <span class="text-purple-400">⚡</span> 1. Lyric Architecture
+            </h3>
+            <span class="text-xs font-mono text-slate-400">Select Mode & Theme</span>
+          </div>
+
+          <!-- Format Selector: Song vs Rap -->
+          <div class="flex flex-col gap-2">
+            <label class="text-xs font-semibold text-slate-300 uppercase tracking-wider">Format</label>
+            <div class="grid grid-cols-2 gap-2 p-1 bg-slate-900/90 rounded-xl border border-white/10">
+              <button 
+                id="btn-mode-rap" 
+                type="button" 
+                class="flex items-center justify-center gap-2 py-2.5 px-3 rounded-lg text-sm font-bold transition-all bg-purple-600 text-white shadow-lg shadow-purple-600/30"
+              >
+                <span>🎤</span> Rap / Bars / Drops
+              </button>
+              <button 
+                id="btn-mode-song" 
+                type="button" 
+                class="flex items-center justify-center gap-2 py-2.5 px-3 rounded-lg text-sm font-medium transition-all text-slate-400 hover:text-white hover:bg-slate-800"
+              >
+                <span>🎵</span> Song / Pop / Chords
+              </button>
+            </div>
+            <p id="mode-hint" class="text-[11px] text-purple-300/80 italic mt-0.5">
+              Rap mode: Packed with punchlines, quotables, flow switches, and 808 beat drop tags.
+            </p>
+          </div>
+
+          <!-- Theme / Mood Selector -->
+          <div class="flex flex-col gap-2">
+            <label class="text-xs font-semibold text-slate-300 uppercase tracking-wider flex items-center justify-between">
+              <span>Theme / Mood</span>
+              <span id="theme-selected-label" class="text-xs text-purple-400 font-mono">hard</span>
+            </label>
+            <div class="grid grid-cols-4 gap-1.5" id="theme-pill-container">
+              <button type="button" data-theme="hard" class="theme-btn py-1.5 px-2 rounded-lg text-xs font-semibold border transition text-center bg-purple-600/30 border-purple-500 text-purple-200">
+                🔥 Hard
+              </button>
+              <button type="button" data-theme="melodic" class="theme-btn py-1.5 px-2 rounded-lg text-xs font-semibold border transition text-center bg-slate-900/60 border-white/5 text-slate-400 hover:text-white">
+                🌊 Melodic
+              </button>
+              <button type="button" data-theme="soft" class="theme-btn py-1.5 px-2 rounded-lg text-xs font-semibold border transition text-center bg-slate-900/60 border-white/5 text-slate-400 hover:text-white">
+                ☕ Soft
+              </button>
+              <button type="button" data-theme="dark" class="theme-btn py-1.5 px-2 rounded-lg text-xs font-semibold border transition text-center bg-slate-900/60 border-white/5 text-slate-400 hover:text-white">
+                🌑 Dark
+              </button>
+            </div>
+          </div>
+
+          <!-- Keywords & Concept Input -->
+          <div class="flex flex-col gap-2">
+            <label class="text-xs font-semibold text-slate-300 uppercase tracking-wider flex items-center justify-between">
+              <span>Keywords / Story / Concepts</span>
+              <span class="text-[11px] text-slate-400">Comma separated</span>
+            </label>
+            <textarea 
+              id="input-keywords"
+              rows="3" 
+              placeholder="e.g. late night coding, hustle, neon city, overcoming doubt, breaking boundaries"
+              class="w-full bg-slate-900/80 border border-white/10 rounded-xl p-3 text-sm text-slate-200 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition resize-none font-sans"
+            >late night hustle, neon city, breaking limits, relentless grind, pure vision</textarea>
+
+            <!-- Quick Inspiration Chips -->
+            <div class="flex flex-wrap gap-1.5 mt-1">
+              <span class="text-[10px] text-slate-500 self-center">Inspire:</span>
+              <button type="button" class="preset-chip text-[11px] px-2 py-0.5 rounded-md bg-slate-800/80 hover:bg-purple-900/40 text-slate-300 hover:text-purple-300 transition border border-white/5" data-val="midnight rain, heartbreak, old memories, coffee vapor">
+                🌧️ Nostalgia
+              </button>
+              <button type="button" class="preset-chip text-[11px] px-2 py-0.5 rounded-md bg-slate-800/80 hover:bg-purple-900/40 text-slate-300 hover:text-purple-300 transition border border-white/5" data-val="underdog triumph, champion ring, relentless grind, diamonds from pressure">
+                🏆 Champion
+              </button>
+              <button type="button" class="preset-chip text-[11px] px-2 py-0.5 rounded-md bg-slate-800/80 hover:bg-purple-900/40 text-slate-300 hover:text-purple-300 transition border border-white/5" data-val="cyberpunk skyline, neon reflections, digital souls, synthetic dreams">
+                🏙️ Cyberpunk
+              </button>
+              <button type="button" class="preset-chip text-[11px] px-2 py-0.5 rounded-md bg-slate-800/80 hover:bg-purple-900/40 text-slate-300 hover:text-purple-300 transition border border-white/5" data-val="golden hour, tender devotion, acoustic warmth, sweet whispers">
+                ☀️ Soft Love
+              </button>
+            </div>
+          </div>
+
+          <!-- Artist Delivery / Flavor (Optional) -->
+          <div class="flex flex-col gap-2">
+            <label class="text-xs font-semibold text-slate-300 uppercase tracking-wider flex items-center justify-between">
+              <span>Artist Flow / Delivery Flavour</span>
+              <span class="text-[11px] text-slate-400">Optional</span>
+            </label>
+            <input 
+              id="input-artist"
+              type="text" 
+              placeholder="e.g. Kendrick / Travis Scott / The Weeknd / Adele"
+              class="w-full bg-slate-900/80 border border-white/10 rounded-xl px-3 py-2 text-sm text-slate-200 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-purple-500 transition"
+            />
+          </div>
+
+          <!-- Gemini AI Key Drawer (Optional AI Supercharge) -->
+          <div class="border border-white/5 rounded-xl bg-slate-900/40 p-3">
+            <button id="toggle-gemini" type="button" class="w-full flex items-center justify-between text-xs text-slate-300 hover:text-white transition">
+              <span class="flex items-center gap-1.5 font-medium">
+                <span>✨</span> Optional: Gemini AI API Key
+              </span>
+              <span id="gemini-toggle-icon" class="text-slate-500 font-mono">▼</span>
+            </button>
+            <div id="gemini-drawer" class="hidden mt-3 flex-col gap-2 pt-2 border-t border-white/5">
+              <input 
+                id="input-gemini-key"
+                type="password" 
+                placeholder="Enter Gemini API Key (Optional for cloud LLM)"
+                class="w-full bg-slate-950 border border-white/10 rounded-lg px-3 py-1.5 text-xs text-slate-200 placeholder-slate-600 focus:outline-none focus:ring-1 focus:ring-purple-400 font-mono"
+              />
+              <p class="text-[10px] text-slate-500">
+                Leave blank to use the built-in procedural rhyme & structure engine (100% offline & instant).
+              </p>
+            </div>
+          </div>
+
+          <!-- Compose Button -->
+          <button 
+            id="btn-compose"
+            type="button" 
+            class="w-full py-3.5 px-4 rounded-xl font-extrabold text-sm text-white bg-gradient-to-r from-purple-600 via-pink-600 to-amber-500 hover:from-purple-500 hover:to-amber-400 active:scale-[0.99] transition shadow-lg shadow-purple-600/25 flex items-center justify-center gap-2 cursor-pointer"
+          >
+            <span class="text-base">⚡</span> COMPOSE TRACK & SYNC BEAT
+          </button>
+        </div>
+
+        <!-- 2. BUILT-IN WEB AUDIO BEAT STATION -->
+        <div id="beat-station" class="glass-panel rounded-2xl p-5 border border-white/10 flex flex-col gap-4 shadow-xl">
+          <div class="flex items-center justify-between border-b border-white/10 pb-3">
+            <div class="flex items-center gap-2">
+              <span class="text-cyan-400 text-lg">🎧</span>
+              <div>
+                <h3 class="font-bold text-base text-white">2. Beat & Music Station</h3>
+                <p class="text-[11px] text-slate-400">Synthesized live via Web Audio API</p>
+              </div>
+            </div>
+            <span id="beat-playing-badge" class="text-[11px] font-mono px-2 py-0.5 rounded-full bg-slate-800 text-slate-400 border border-white/5">
+              STOPPED
+            </span>
+          </div>
+
+          <!-- Real-Time Audio Spectrum Canvas -->
+          <div class="relative w-full h-24 bg-slate-950 rounded-xl overflow-hidden border border-white/10 flex items-center justify-center">
+            <canvas id="audio-visualizer" class="w-full h-full block"></canvas>
+            <!-- 16 Step Sequencer LED indicators -->
+            <div class="absolute bottom-1.5 inset-x-2 flex justify-between gap-1 pointer-events-none" id="step-leds">
+              <!-- 16 dots generated dynamically -->
+            </div>
+          </div>
+
+          <!-- Preset Selector -->
+          <div class="flex flex-col gap-1.5">
+            <label class="text-xs font-semibold text-slate-300 uppercase tracking-wider flex items-center justify-between">
+              <span>Beat Preset</span>
+              <span id="current-preset-genre" class="text-[11px] text-purple-400 font-mono">Rap (Hard)</span>
+            </label>
+            <select 
+              id="select-beat-preset"
+              class="w-full bg-slate-900 border border-white/10 rounded-xl px-3 py-2 text-sm text-slate-200 focus:outline-none focus:ring-2 focus:ring-cyan-500 font-sans cursor-pointer"
+            >
+              <option value="trap-808">💥 Hard 808 Trap & Drill (140 BPM)</option>
+              <option value="melodic-drill">🌊 Melodic Wave & Drill (132 BPM)</option>
+              <option value="lofi-chill">☕ Lo-Fi / Soft Boom Bap (84 BPM)</option>
+              <option value="pop-anthem">🔥 Pop Anthem & Rock Drive (124 BPM)</option>
+              <option value="ballad-acoustic">🎹 Soft Soul Ballad (76 BPM)</option>
+              <option value="melodic-pop">🌟 Melodic Chart Pop (104 BPM)</option>
+            </select>
+            <p id="preset-description" class="text-[11px] text-slate-400 mt-0.5 leading-relaxed">
+              Sliding heavy 808 sub-bass, rattling hi-hat triplet rolls, snappy snare, and dark minor chords.
+            </p>
+          </div>
+
+          <!-- Transport Controls: Play/Pause, BPM, Volume -->
+          <div class="flex items-center gap-3 bg-slate-900/60 p-3 rounded-xl border border-white/5">
+            <!-- Big Play/Pause Button -->
+            <button 
+              id="btn-play-beat"
+              type="button" 
+              class="w-12 h-12 rounded-xl bg-cyan-500 hover:bg-cyan-400 active:scale-95 text-slate-950 font-bold flex items-center justify-center text-xl shadow-lg shadow-cyan-500/25 transition cursor-pointer shrink-0"
+              title="Play / Pause Beat"
+            >
+              ▶
+            </button>
+
+            <!-- BPM Control -->
+            <div class="flex-1 flex flex-col gap-1">
+              <div class="flex items-center justify-between text-xs">
+                <span class="text-slate-400 font-semibold">TEMPO</span>
+                <span id="bpm-display" class="font-mono font-bold text-cyan-400">140 BPM</span>
+              </div>
+              <input 
+                id="slider-bpm"
+                type="range" 
+                min="60" 
+                max="180" 
+                value="140"
+                class="w-full h-1.5 bg-slate-800 rounded-lg appearance-none cursor-pointer" 
+              />
+            </div>
+
+            <!-- Tap Tempo Button -->
+            <button 
+              id="btn-tap-tempo" 
+              type="button" 
+              class="px-2.5 py-2 text-xs font-mono font-bold rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 active:bg-cyan-500 active:text-slate-950 transition border border-white/5"
+              title="Tap beat repeatedly to calculate BPM"
+            >
+              TAP
+            </button>
+          </div>
+
+          <!-- Stem Mute Controls -->
+          <div class="flex flex-col gap-1.5">
+            <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Mix Stems</span>
+            <div class="grid grid-cols-3 gap-2">
+              <button 
+                id="mute-drums"
+                type="button" 
+                class="stem-btn py-1.5 px-2 rounded-lg text-xs font-medium bg-slate-800 text-slate-200 border border-white/10 hover:border-cyan-500 transition text-center"
+              >
+                🥁 Drums: ON
+              </button>
+              <button 
+                id="mute-bass"
+                type="button" 
+                class="stem-btn py-1.5 px-2 rounded-lg text-xs font-medium bg-slate-800 text-slate-200 border border-white/10 hover:border-cyan-500 transition text-center"
+              >
+                🔊 808 Bass: ON
+              </button>
+              <button 
+                id="mute-melody"
+                type="button" 
+                class="stem-btn py-1.5 px-2 rounded-lg text-xs font-medium bg-slate-800 text-slate-200 border border-white/10 hover:border-cyan-500 transition text-center"
+              >
+                🎹 Melody: ON
+              </button>
+            </div>
+          </div>
+
+          <!-- Master Volume Slider -->
+          <div class="flex items-center gap-3">
+            <span class="text-xs text-slate-400">🔈</span>
+            <input 
+              id="slider-volume" 
+              type="range" 
+              min="0" 
+              max="1" 
+              step="0.01" 
+              value="0.85" 
+              class="flex-1 h-1 bg-slate-800 rounded-lg appearance-none cursor-pointer"
+            />
+            <span class="text-xs text-slate-400">🔊</span>
+          </div>
+
+          <!-- Beat Export & Vocal Booth Actions -->
+          <div class="grid grid-cols-2 gap-2 pt-2 border-t border-white/5">
+            <button 
+              id="btn-download-beat" 
+              type="button" 
+              class="py-2.5 px-3 rounded-xl bg-slate-800 hover:bg-slate-700 active:scale-95 text-slate-200 text-xs font-bold transition flex items-center justify-center gap-1.5 border border-white/10 shadow-sm"
+            >
+              <span>💾</span> Download Beat (.WAV)
+            </button>
+            <button 
+              id="btn-record-vocal" 
+              type="button" 
+              class="py-2.5 px-3 rounded-xl bg-rose-600/20 hover:bg-rose-600/30 text-rose-300 border border-rose-500/30 text-xs font-bold transition flex items-center justify-center gap-1.5"
+            >
+              <span id="record-icon" class="w-2.5 h-2.5 rounded-full bg-rose-500"></span> 
+              <span id="record-label">Record Over Beat</span>
+            </button>
+          </div>
+
+          <!-- Recorded Take Audio Player (appears after recording) -->
+          <div id="vocal-playback-box" class="hidden p-3 rounded-xl bg-rose-950/30 border border-rose-500/30 flex flex-col gap-2">
+            <div class="flex items-center justify-between text-xs text-rose-300 font-semibold">
+              <span>🎙️ Recorded Vocal Take</span>
+              <button id="btn-dismiss-vocal" class="text-slate-400 hover:text-white">✕</button>
+            </div>
+            <audio id="vocal-audio-player" controls class="w-full h-8"></audio>
+            <a id="download-vocal-link" class="text-center py-1 text-xs text-rose-400 hover:underline">
+              Download Vocal Take (.webm / .wav)
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- RIGHT COLUMN: Professional Lyric Sheet & Interactive Teleprompter (7 cols) -->
+      <div class="lg:col-span-7 flex flex-col gap-6">
+
+        <div class="glass-panel-glow rounded-2xl p-6 border border-white/10 flex flex-col gap-5 shadow-2xl relative">
+          
+          <!-- Top Info Header -->
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-white/10 pb-4">
+            <div>
+              <div class="flex items-center gap-2 mb-1">
+                <span id="track-genre-badge" class="text-[11px] font-mono px-2.5 py-0.5 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/30 font-semibold">
+                  Rap / Hip-Hop
+                </span>
+                <span id="track-bpm-badge" class="text-[11px] font-mono px-2.5 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">
+                  140 BPM
+                </span>
+                <span id="track-key-badge" class="text-[11px] font-mono px-2.5 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/30">
+                  Key: C Minor
+                </span>
+              </div>
+              <h2 id="track-title" class="text-xl sm:text-2xl font-black text-white tracking-tight">
+                LATE NIGHT HUSTLE (THE ANTHEM)
+              </h2>
+            </div>
+
+            <!-- Action buttons: Copy, Download, Teleprompter -->
+            <div class="flex items-center gap-2 flex-wrap">
+              <button 
+                id="btn-teleprompter"
+                type="button" 
+                class="px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 bg-slate-800 text-slate-300 hover:text-white border border-white/10"
+                title="Auto-scroll lyrics synchronized with the beat tempo"
+              >
+                <span>📜</span> <span id="teleprompter-text">Flow Prompter: OFF</span>
+              </button>
+              <button 
+                id="btn-copy-lyrics"
+                type="button" 
+                class="px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 bg-slate-800 text-slate-300 hover:text-white border border-white/10"
+              >
+                <span>📋</span> Copy
+              </button>
+              <button 
+                id="btn-download-txt"
+                type="button" 
+                class="px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 bg-purple-600 hover:bg-purple-500 text-white shadow-sm"
+              >
+                <span>📥</span> Save TXT
+              </button>
+            </div>
+          </div>
+
+          <!-- Highlight Quotables Carousel -->
+          <div id="quotables-banner" class="bg-gradient-to-r from-amber-500/10 via-purple-500/10 to-pink-500/10 p-3.5 rounded-xl border border-amber-500/20 flex flex-col gap-1.5">
+            <span class="text-[10px] font-mono uppercase tracking-wider text-amber-400 font-bold flex items-center gap-1">
+              <span>⭐</span> KEY QUOTABLES & PUNCHLINE HIGHLIGHTS
+            </span>
+            <div id="quotables-list" class="text-xs sm:text-sm text-amber-100/90 font-medium italic flex flex-col gap-1">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+
+          <!-- Dynamic Lyric Sheet Content -->
+          <div 
+            id="lyric-container" 
+            class="flex flex-col gap-6 max-h-[700px] overflow-y-auto pr-2 scroll-smooth"
+          >
+            <!-- Generated sections will be injected here -->
+          </div>
+
+          <!-- Flow Advice & Delivery Playbook -->
+          <div class="border-t border-white/10 pt-4 flex flex-col gap-2">
+            <span class="text-xs font-bold text-slate-300 uppercase tracking-wider flex items-center gap-1.5">
+              <span>🎯</span> Performance & Cadence Advice
+            </span>
+            <ul id="flow-advice-list" class="text-xs text-slate-400 list-disc list-inside space-y-1">
+              <!-- Dynamically populated -->
+            </ul>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Features & Integration Guide -->
+    <section class="glass-panel rounded-2xl p-6 border border-white/10 mt-4">
+      <h3 class="font-bold text-base text-white mb-3 flex items-center gap-2">
+        <span>🎹</span> How to Integrate & Perform With Your Compositions
+      </h3>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs text-slate-300 leading-relaxed">
+        <div class="p-3.5 bg-slate-900/60 rounded-xl border border-white/5 flex flex-col gap-1.5">
+          <span class="font-bold text-purple-300 text-sm">1. Beat & BPM Sync</span>
+          <p>
+            The lyric engine automatically sets the matching BPM and scale for your selected mood. The 16-step sequencer and teleprompter keep your flow on-beat.
+          </p>
+        </div>
+        <div class="p-3.5 bg-slate-900/60 rounded-xl border border-white/5 flex flex-col gap-1.5">
+          <span class="font-bold text-cyan-300 text-sm">2. DAW / Studio Integration</span>
+          <p>
+            Click <strong class="text-white">"Download Beat (.WAV)"</strong> to generate a 44.1kHz audio loop. Drag and drop it into FL Studio, Ableton Live, Logic Pro, or CapCut.
+          </p>
+        </div>
+        <div class="p-3.5 bg-slate-900/60 rounded-xl border border-white/5 flex flex-col gap-1.5">
+          <span class="font-bold text-pink-300 text-sm">3. Vocal Practice & Recording</span>
+          <p>
+            Use the built-in microphone booth to capture vocal scratch takes over the live synthesizer beat, or enable Flow Prompter for live rehearsal.
+          </p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-white/10 py-6 text-center text-xs text-slate-500">
+    <p>VerseForge Studio • Astro.js Micro Tool for Songwriters, Rappers & Producers</p>
+  </footer>
+</Layout>
+
+<script>
+  import { composeOfflineLyrics, composeWithGeminiAI, type GeneratedComposition } from '../lib/lyricEngine';
+  import { BeatSynthesizer, BEAT_PRESETS } from '../lib/beatEngine';
+
+  // --- State Initialization ---
+  let currentMode: 'rap' | 'song' = 'rap';
+  let currentTheme: 'soft' | 'hard' | 'melodic' | 'dark' = 'hard';
+  let isTeleprompterActive = false;
+  let teleprompterInterval: number | null = null;
+  let mediaRecorder: MediaRecorder | null = null;
+  let audioChunks: Blob[] = [];
+  let isRecording = false;
+
+  // Initialize Audio Synthesizer
+  const beatSynth = new BeatSynthesizer('trap-808');
+
+  // DOM Elements
+  const btnModeRap = document.getElementById('btn-mode-rap') as HTMLButtonElement;
+  const btnModeSong = document.getElementById('btn-mode-song') as HTMLButtonElement;
+  const modeHint = document.getElementById('mode-hint') as HTMLParagraphElement;
+  const themeBtns = document.querySelectorAll('.theme-btn') as NodeListOf<HTMLButtonElement>;
+  const themeLabel = document.getElementById('theme-selected-label') as HTMLSpanElement;
+  const inputKeywords = document.getElementById('input-keywords') as HTMLTextAreaElement;
+  const inputArtist = document.getElementById('input-artist') as HTMLInputElement;
+  const inputGeminiKey = document.getElementById('input-gemini-key') as HTMLInputElement;
+  const btnCompose = document.getElementById('btn-compose') as HTMLButtonElement;
+  const toggleGemini = document.getElementById('toggle-gemini') as HTMLButtonElement;
+  const geminiDrawer = document.getElementById('gemini-drawer') as HTMLDivElement;
+  const geminiIcon = document.getElementById('gemini-toggle-icon') as HTMLSpanElement;
+
+  // Beat Station Elements
+  const btnPlayBeat = document.getElementById('btn-play-beat') as HTMLButtonElement;
+  const selectBeatPreset = document.getElementById('select-beat-preset') as HTMLSelectElement;
+  const sliderBpm = document.getElementById('slider-bpm') as HTMLInputElement;
+  const bpmDisplay = document.getElementById('bpm-display') as HTMLSpanElement;
+  const btnTapTempo = document.getElementById('btn-tap-tempo') as HTMLButtonElement;
+  const sliderVolume = document.getElementById('slider-volume') as HTMLInputElement;
+  const muteDrumsBtn = document.getElementById('mute-drums') as HTMLButtonElement;
+  const muteBassBtn = document.getElementById('mute-bass') as HTMLButtonElement;
+  const muteMelodyBtn = document.getElementById('mute-melody') as HTMLButtonElement;
+  const btnDownloadBeat = document.getElementById('btn-download-beat') as HTMLButtonElement;
+  const beatPlayingBadge = document.getElementById('beat-playing-badge') as HTMLSpanElement;
+  const presetDescription = document.getElementById('preset-description') as HTMLParagraphElement;
+  const currentPresetGenre = document.getElementById('current-preset-genre') as HTMLSpanElement;
+  const canvas = document.getElementById('audio-visualizer') as HTMLCanvasElement;
+  const stepLedsContainer = document.getElementById('step-leds') as HTMLDivElement;
+
+  // Vocal Recording Elements
+  const btnRecordVocal = document.getElementById('btn-record-vocal') as HTMLButtonElement;
+  const recordIcon = document.getElementById('record-icon') as HTMLSpanElement;
+  const recordLabel = document.getElementById('record-label') as HTMLSpanElement;
+  const vocalPlaybackBox = document.getElementById('vocal-playback-box') as HTMLDivElement;
+  const vocalAudioPlayer = document.getElementById('vocal-audio-player') as HTMLAudioElement;
+  const downloadVocalLink = document.getElementById('download-vocal-link') as HTMLAnchorElement;
+  const btnDismissVocal = document.getElementById('btn-dismiss-vocal') as HTMLButtonElement;
+
+  // Lyric Viewer Elements
+  const trackTitle = document.getElementById('track-title') as HTMLHeadingElement;
+  const trackGenreBadge = document.getElementById('track-genre-badge') as HTMLSpanElement;
+  const trackBpmBadge = document.getElementById('track-bpm-badge') as HTMLSpanElement;
+  const trackKeyBadge = document.getElementById('track-key-badge') as HTMLSpanElement;
+  const quotablesList = document.getElementById('quotables-list') as HTMLDivElement;
+  const lyricContainer = document.getElementById('lyric-container') as HTMLDivElement;
+  const flowAdviceList = document.getElementById('flow-advice-list') as HTMLUListElement;
+  const btnCopyLyrics = document.getElementById('btn-copy-lyrics') as HTMLButtonElement;
+  const btnDownloadTxt = document.getElementById('btn-download-txt') as HTMLButtonElement;
+  const btnTeleprompter = document.getElementById('btn-teleprompter') as HTMLButtonElement;
+  const teleprompterText = document.getElementById('teleprompter-text') as HTMLSpanElement;
+
+  // Current composition cache
+  let currentComposition: GeneratedComposition | null = null;
+
+  // Generate 16 Step LED indicators
+  const ledDots: HTMLDivElement[] = [];
+  stepLedsContainer.innerHTML = '';
+  for (let i = 0; i < 16; i++) {
+    const dot = document.createElement('div');
+    dot.className = `flex-1 h-1.5 rounded-full transition-all duration-75 ${
+      i % 4 === 0 ? 'bg-slate-700' : 'bg-slate-800'
+    }`;
+    stepLedsContainer.appendChild(dot);
+    ledDots.push(dot);
+  }
+
+  // --- Step & Sequencer Callback ---
+  beatSynth.onStepChange = (step: number) => {
+    ledDots.forEach((dot, idx) => {
+      if (idx === step) {
+        dot.className = 'flex-1 h-1.5 rounded-full bg-cyan-400 shadow-[0_0_8px_#22d3ee] scale-y-125';
+      } else {
+        dot.className = `flex-1 h-1.5 rounded-full transition-all duration-75 ${
+          idx % 4 === 0 ? 'bg-slate-700' : 'bg-slate-800'
+        }`;
+      }
+    });
+
+    // If teleprompter is active, gently progress
+    if (isTeleprompterActive && step % 4 === 0) {
+      stepTeleprompter();
+    }
+  };
+
+  beatSynth.onStateChange = (playing: boolean) => {
+    if (playing) {
+      btnPlayBeat.innerHTML = '⏸';
+      btnPlayBeat.classList.replace('bg-cyan-500', 'bg-amber-400');
+      beatPlayingBadge.innerText = 'PLAYING';
+      beatPlayingBadge.className = 'text-[11px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 animate-pulse';
+    } else {
+      btnPlayBeat.innerHTML = '▶';
+      btnPlayBeat.classList.replace('bg-amber-400', 'bg-cyan-500');
+      beatPlayingBadge.innerText = 'STOPPED';
+      beatPlayingBadge.className = 'text-[11px] font-mono px-2 py-0.5 rounded-full bg-slate-800 text-slate-400 border border-white/5';
+      ledDots.forEach(dot => dot.classList.remove('bg-cyan-400', 'shadow-[0_0_8px_#22d3ee]'));
+    }
+  };
+
+  // --- Visualizer Loop ---
+  function initVisualizer() {
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    function render() {
+      requestAnimationFrame(render);
+      const width = canvas.width = canvas.parentElement?.clientWidth || 300;
+      const height = canvas.height = canvas.parentElement?.clientHeight || 96;
+
+      ctx.clearRect(0, 0, width, height);
+
+      if (!beatSynth.analyserNode || !beatSynth.getIsPlaying()) {
+        // Draw resting sine wave
+        ctx.beginPath();
+        ctx.moveTo(0, height / 2);
+        for (let x = 0; x < width; x++) {
+          const y = height / 2 + Math.sin(x * 0.05 + Date.now() * 0.002) * 4;
+          ctx.lineTo(x, y);
+        }
+        ctx.strokeStyle = 'rgba(148, 163, 184, 0.2)';
+        ctx.lineWidth = 1.5;
+        ctx.stroke();
+        return;
+      }
+
+      const bufferLength = beatSynth.analyserNode.frequencyBinCount;
+      const dataArray = new Uint8Array(bufferLength);
+      beatSynth.analyserNode.getByteFrequencyData(dataArray);
+
+      const barWidth = (width / bufferLength) * 2.2;
+      let x = 0;
+
+      for (let i = 0; i < bufferLength; i++) {
+        const barHeight = (dataArray[i] / 255) * height * 0.85;
+
+        // Gradient color for spectrum bars
+        const gradient = ctx.createLinearGradient(0, height, 0, height - barHeight);
+        gradient.addColorStop(0, '#06b6d4');
+        gradient.addColorStop(0.5, '#a855f7');
+        gradient.addColorStop(1, '#ec4899');
+
+        ctx.fillStyle = gradient;
+        ctx.fillRect(x, height - barHeight, barWidth - 1, barHeight);
+
+        x += barWidth;
+      }
+    }
+    render();
+  }
+  initVisualizer();
+
+  // --- Mode Switching (Rap vs Song) ---
+  btnModeRap.addEventListener('click', () => {
+    currentMode = 'rap';
+    btnModeRap.className = 'flex items-center justify-center gap-2 py-2.5 px-3 rounded-lg text-sm font-bold transition-all bg-purple-600 text-white shadow-lg shadow-purple-600/30';
+    btnModeSong.className = 'flex items-center justify-center gap-2 py-2.5 px-3 rounded-lg text-sm font-medium transition-all text-slate-400 hover:text-white hover:bg-slate-800';
+    modeHint.innerText = 'Rap mode: Packed with punchlines, quotables, flow switches, and 808 beat drop tags.';
+    selectBeatPreset.value = currentTheme === 'hard' ? 'trap-808' : currentTheme === 'soft' ? 'lofi-chill' : 'melodic-drill';
+    updatePresetDetails();
+  });
+
+  btnModeSong.addEventListener('click', () => {
+    currentMode = 'song';
+    btnModeSong.className = 'flex items-center justify-center gap-2 py-2.5 px-3 rounded-lg text-sm font-bold transition-all bg-purple-600 text-white shadow-lg shadow-purple-600/30';
+    btnModeRap.className = 'flex items-center justify-center gap-2 py-2.5 px-3 rounded-lg text-sm font-medium transition-all text-slate-400 hover:text-white hover:bg-slate-800';
+    modeHint.innerText = 'Song mode: Professional structure with chord progressions, vocal delivery notes, and melodic climaxes.';
+    selectBeatPreset.value = currentTheme === 'hard' ? 'pop-anthem' : currentTheme === 'soft' ? 'ballad-acoustic' : 'melodic-pop';
+    updatePresetDetails();
+  });
+
+  // --- Theme Selection ---
+  themeBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const selected = btn.dataset.theme as 'soft' | 'hard' | 'melodic' | 'dark';
+      currentTheme = selected;
+      themeLabel.innerText = selected;
+
+      themeBtns.forEach(b => {
+        b.className = 'theme-btn py-1.5 px-2 rounded-lg text-xs font-semibold border transition text-center bg-slate-900/60 border-white/5 text-slate-400 hover:text-white';
+      });
+      btn.className = 'theme-btn py-1.5 px-2 rounded-lg text-xs font-semibold border transition text-center bg-purple-600/30 border-purple-500 text-purple-200';
+
+      // Auto update beat preset match
+      if (currentMode === 'rap') {
+        selectBeatPreset.value = selected === 'hard' || selected === 'dark' ? 'trap-808' : selected === 'soft' ? 'lofi-chill' : 'melodic-drill';
+      } else {
+        selectBeatPreset.value = selected === 'hard' ? 'pop-anthem' : selected === 'soft' ? 'ballad-acoustic' : 'melodic-pop';
+      }
+      updatePresetDetails();
+    });
+  });
+
+  // --- Preset Chips ---
+  document.querySelectorAll('.preset-chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      const val = (chip as HTMLElement).dataset.val;
+      if (val) inputKeywords.value = val;
+    });
+  });
+
+  // --- Gemini Toggle Drawer ---
+  toggleGemini.addEventListener('click', () => {
+    const isHidden = geminiDrawer.classList.contains('hidden');
+    if (isHidden) {
+      geminiDrawer.classList.remove('hidden');
+      geminiDrawer.classList.add('flex');
+      geminiIcon.innerText = '▲';
+    } else {
+      geminiDrawer.classList.add('hidden');
+      geminiDrawer.classList.remove('flex');
+      geminiIcon.innerText = '▼';
+    }
+  });
+
+  // --- Preset Update Logic ---
+  function updatePresetDetails() {
+    const presetId = selectBeatPreset.value;
+    beatSynth.setPreset(presetId);
+    const p = beatSynth.getPreset();
+    sliderBpm.value = p.defaultBpm.toString();
+    bpmDisplay.innerText = `${p.defaultBpm} BPM`;
+    presetDescription.innerText = p.description;
+    currentPresetGenre.innerText = p.genre;
+  }
+  selectBeatPreset.addEventListener('change', updatePresetDetails);
+
+  // --- Play/Pause Beat ---
+  btnPlayBeat.addEventListener('click', () => {
+    beatSynth.toggle();
+  });
+
+  // --- BPM Slider ---
+  sliderBpm.addEventListener('input', () => {
+    const bpm = parseInt(sliderBpm.value);
+    beatSynth.bpm = bpm;
+    bpmDisplay.innerText = `${bpm} BPM`;
+    if (beatSynth.getIsPlaying()) {
+      beatSynth.pause();
+      beatSynth.play();
+    }
+  });
+
+  // --- Tap Tempo ---
+  let tapTimes: number[] = [];
+  btnTapTempo.addEventListener('click', () => {
+    const now = performance.now();
+    tapTimes.push(now);
+    if (tapTimes.length > 4) tapTimes.shift();
+
+    if (tapTimes.length >= 2) {
+      const intervals = [];
+      for (let i = 1; i < tapTimes.length; i++) {
+        intervals.push(tapTimes[i] - tapTimes[i - 1]);
+      }
+      const avgInterval = intervals.reduce((a, b) => a + b) / intervals.length;
+      const bpm = Math.min(200, Math.max(50, Math.round(60000 / avgInterval)));
+      sliderBpm.value = bpm.toString();
+      beatSynth.bpm = bpm;
+      bpmDisplay.innerText = `${bpm} BPM`;
+      if (beatSynth.getIsPlaying()) {
+        beatSynth.pause();
+        beatSynth.play();
+      }
+    }
+  });
+
+  // --- Stem Mute Toggles ---
+  muteDrumsBtn.addEventListener('click', () => {
+    beatSynth.muteDrums = !beatSynth.muteDrums;
+    muteDrumsBtn.innerText = `🥁 Drums: ${beatSynth.muteDrums ? 'MUTED' : 'ON'}`;
+    muteDrumsBtn.className = beatSynth.muteDrums 
+      ? 'stem-btn py-1.5 px-2 rounded-lg text-xs font-medium bg-rose-950/60 text-rose-300 border border-rose-500/30'
+      : 'stem-btn py-1.5 px-2 rounded-lg text-xs font-medium bg-slate-800 text-slate-200 border border-white/10';
+  });
+
+  muteBassBtn.addEventListener('click', () => {
+    beatSynth.muteBass = !beatSynth.muteBass;
+    muteBassBtn.innerText = `🔊 808 Bass: ${beatSynth.muteBass ? 'MUTED' : 'ON'}`;
+    muteBassBtn.className = beatSynth.muteBass 
+      ? 'stem-btn py-1.5 px-2 rounded-lg text-xs font-medium bg-rose-950/60 text-rose-300 border border-rose-500/30'
+      : 'stem-btn py-1.5 px-2 rounded-lg text-xs font-medium bg-slate-800 text-slate-200 border border-white/10';
+  });
+
+  muteMelodyBtn.addEventListener('click', () => {
+    beatSynth.muteMelody = !beatSynth.muteMelody;
+    muteMelodyBtn.innerText = `🎹 Melody: ${beatSynth.muteMelody ? 'MUTED' : 'ON'}`;
+    muteMelodyBtn.className = beatSynth.muteMelody 
+      ? 'stem-btn py-1.5 px-2 rounded-lg text-xs font-medium bg-rose-950/60 text-rose-300 border border-rose-500/30'
+      : 'stem-btn py-1.5 px-2 rounded-lg text-xs font-medium bg-slate-800 text-slate-200 border border-white/10';
+  });
+
+  // --- Volume Slider ---
+  sliderVolume.addEventListener('input', () => {
+    beatSynth.setVolume(parseFloat(sliderVolume.value));
+  });
+
+  // --- Beat Download (WAV) ---
+  btnDownloadBeat.addEventListener('click', async () => {
+    btnDownloadBeat.innerText = '⏳ Rendering 44.1kHz WAV...';
+    try {
+      const wavBlob = await beatSynth.exportWavBlob(4); // Render 4 full bars
+      const url = URL.createObjectURL(wavBlob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `${beatSynth.getPreset().id}-${beatSynth.bpm}bpm.wav`;
+      a.click();
+      URL.revokeObjectURL(url);
+    } catch (err) {
+      console.error(err);
+      alert('Error generating WAV file');
+    } finally {
+      btnDownloadBeat.innerHTML = '<span>💾</span> Download Beat (.WAV)';
+    }
+  });
+
+  // --- Vocal Microphone Recording ---
+  btnRecordVocal.addEventListener('click', async () => {
+    if (!isRecording) {
+      // Start recording
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        mediaRecorder = new MediaRecorder(stream);
+        audioChunks = [];
+
+        mediaRecorder.ondataavailable = e => {
+          if (e.data.size > 0) audioChunks.push(e.data);
+        };
+
+        mediaRecorder.onstop = () => {
+          const blob = new Blob(audioChunks, { type: 'audio/webm' });
+          const audioUrl = URL.createObjectURL(blob);
+          vocalAudioPlayer.src = audioUrl;
+          downloadVocalLink.href = audioUrl;
+          downloadVocalLink.download = `vocal-take-${Date.now()}.webm`;
+          vocalPlaybackBox.classList.remove('hidden');
+          stream.getTracks().forEach(t => t.stop());
+        };
+
+        mediaRecorder.start();
+        isRecording = true;
+        recordLabel.innerText = 'Recording... (Tap to Stop)';
+        recordIcon.className = 'w-2.5 h-2.5 rounded-full bg-rose-500 animate-ping';
+        btnRecordVocal.classList.add('border-rose-500', 'bg-rose-950/60');
+
+        // Automatically start the beat if not playing!
+        if (!beatSynth.getIsPlaying()) {
+          beatSynth.play();
+        }
+      } catch (err) {
+        alert('Microphone permission required for vocal booth.');
+        console.error(err);
+      }
+    } else {
+      // Stop recording
+      if (mediaRecorder && mediaRecorder.state !== 'inactive') {
+        mediaRecorder.stop();
+      }
+      isRecording = false;
+      recordLabel.innerText = 'Record Over Beat';
+      recordIcon.className = 'w-2.5 h-2.5 rounded-full bg-rose-500';
+      btnRecordVocal.classList.remove('border-rose-500', 'bg-rose-950/60');
+    }
+  });
+
+  btnDismissVocal.addEventListener('click', () => {
+    vocalPlaybackBox.classList.add('hidden');
+  });
+
+  // --- Render Lyrics on Screen ---
+  function renderComposition(comp: GeneratedComposition) {
+    currentComposition = comp;
+    trackTitle.innerText = comp.title;
+    trackGenreBadge.innerText = comp.genre;
+    trackBpmBadge.innerText = `${comp.suggestedBpm} BPM`;
+    trackKeyBadge.innerText = `Key: ${comp.keySignature}`;
+
+    // Update Beat preset & BPM match
+    if (comp.beatPresetId && BEAT_PRESETS[comp.beatPresetId]) {
+      selectBeatPreset.value = comp.beatPresetId;
+      beatSynth.setPreset(comp.beatPresetId);
+      sliderBpm.value = comp.suggestedBpm.toString();
+      beatSynth.bpm = comp.suggestedBpm;
+      bpmDisplay.innerText = `${comp.suggestedBpm} BPM`;
+      updatePresetDetails();
+    }
+
+    // Quotables List
+    quotablesList.innerHTML = '';
+    comp.quotables.forEach(q => {
+      const div = document.createElement('div');
+      div.className = 'flex items-start gap-1.5';
+      div.innerHTML = `<span class="text-amber-400 font-bold">"</span><span>${q}</span><span class="text-amber-400 font-bold">"</span>`;
+      quotablesList.appendChild(div);
+    });
+
+    // Flow Advice
+    flowAdviceList.innerHTML = '';
+    comp.flowAdvice.forEach(adv => {
+      const li = document.createElement('li');
+      li.innerText = adv;
+      flowAdviceList.appendChild(li);
+    });
+
+    // Sections Render
+    lyricContainer.innerHTML = '';
+    comp.sections.forEach((sec, sIdx) => {
+      const secCard = document.createElement('div');
+      secCard.className = 'section-card p-4 rounded-xl bg-slate-900/60 border border-white/5 flex flex-col gap-3 transition-all hover:border-white/10';
+
+      const isFlowSwitch = sec.type === 'flow-switch';
+      const isBeatDrop = sec.type === 'beat-drop';
+      const isHook = sec.type === 'hook' || sec.type === 'chorus';
+
+      let badgeBg = 'bg-slate-800 text-slate-300 border-slate-700';
+      if (isFlowSwitch) badgeBg = 'bg-amber-500/20 text-amber-300 border-amber-500/30 animate-pulse';
+      if (isBeatDrop) badgeBg = 'bg-rose-500/20 text-rose-300 border-rose-500/30 font-bold shadow-[0_0_12px_rgba(244,63,94,0.3)]';
+      if (isHook) badgeBg = 'bg-purple-500/20 text-purple-300 border-purple-500/30 font-bold';
+
+      let headerHtml = `
+        <div class="flex items-center justify-between flex-wrap gap-2 border-b border-white/5 pb-2">
+          <div class="flex items-center gap-2">
+            <span class="text-xs font-mono font-bold px-2 py-0.5 rounded-md border ${badgeBg}">
+              [${sec.title}]
+            </span>
+            ${sec.chords ? `<span class="text-[11px] font-mono text-cyan-300 bg-cyan-950/60 px-2 py-0.5 rounded border border-cyan-800/40">🎸 ${sec.chords}</span>` : ''}
+          </div>
+          ${sec.deliveryTip ? `<span class="text-[11px] text-slate-400 italic">🎙️ ${sec.deliveryTip}</span>` : ''}
+        </div>
+      `;
+
+      let linesHtml = `<div class="flex flex-col gap-1.5 text-sm leading-relaxed">`;
+      sec.lines.forEach((line, lIdx) => {
+        // Highlight adlibs in parentheses e.g. (Yeah!)
+        let formattedLine = line.replace(/\(([^)]+)\)/g, '<span class="text-purple-400 font-semibold italic">($1)</span>');
+
+        // Highlight beat drop indicators
+        if (formattedLine.includes('BEAT DROP') || formattedLine.includes('DROP!')) {
+          formattedLine = `<span class="text-rose-400 font-black tracking-wide bg-rose-950/40 px-2 py-0.5 rounded border border-rose-800/50">${formattedLine}</span>`;
+        }
+
+        // Highlight flow switches
+        if (formattedLine.includes('FLOW SWITCH')) {
+          formattedLine = `<span class="text-amber-400 font-black tracking-wide bg-amber-950/40 px-2 py-0.5 rounded border border-amber-800/50">${formattedLine}</span>`;
+        }
+
+        linesHtml += `
+          <div class="lyric-line py-0.5 px-2 rounded hover:bg-white/5 transition flex items-start gap-2" data-line-index="${sIdx}-${lIdx}">
+            <span class="text-[10px] font-mono text-slate-600 select-none w-5 text-right pt-0.5">${lIdx + 1}</span>
+            <span class="text-slate-200 flex-1">${formattedLine}</span>
+          </div>
+        `;
+      });
+      linesHtml += `</div>`;
+
+      secCard.innerHTML = headerHtml + linesHtml;
+      lyricContainer.appendChild(secCard);
+    });
+  }
+
+  // --- Teleprompter Flow Tracker ---
+  let activeLineIndex = 0;
+  function stepTeleprompter() {
+    const allLines = lyricContainer.querySelectorAll('.lyric-line');
+    if (!allLines.length) return;
+
+    allLines.forEach(l => l.classList.remove('lyric-line-active'));
+    if (activeLineIndex >= allLines.length) {
+      activeLineIndex = 0;
+    }
+
+    const currentEl = allLines[activeLineIndex] as HTMLElement;
+    if (currentEl) {
+      currentEl.classList.add('lyric-line-active');
+      currentEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+    activeLineIndex++;
+  }
+
+  btnTeleprompter.addEventListener('click', () => {
+    isTeleprompterActive = !isTeleprompterActive;
+    if (isTeleprompterActive) {
+      teleprompterText.innerText = 'Flow Prompter: ON';
+      btnTeleprompter.className = 'px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 bg-purple-600 text-white shadow-sm';
+      activeLineIndex = 0;
+      // Also start beat if stopped!
+      if (!beatSynth.getIsPlaying()) {
+        beatSynth.play();
+      }
+    } else {
+      teleprompterText.innerText = 'Flow Prompter: OFF';
+      btnTeleprompter.className = 'px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 bg-slate-800 text-slate-300 hover:text-white border border-white/10';
+      const allLines = lyricContainer.querySelectorAll('.lyric-line');
+      allLines.forEach(l => l.classList.remove('lyric-line-active'));
+    }
+  });
+
+  // --- Compose Handler ---
+  btnCompose.addEventListener('click', async () => {
+    const originalText = btnCompose.innerHTML;
+    btnCompose.innerHTML = `<span>⏳</span> COMPOSING BARS & HARMONIES...`;
+    btnCompose.disabled = true;
+
+    try {
+      const keywords = inputKeywords.value.trim() || 'hustle, rhythm, late night neon, victory';
+      const artistStyle = inputArtist.value.trim();
+      const apiKey = inputGeminiKey.value.trim();
+
+      let comp: GeneratedComposition;
+      if (apiKey) {
+        comp = await composeWithGeminiAI({
+          type: currentMode,
+          theme: currentTheme,
+          keywords,
+          artistStyle,
+          geminiApiKey: apiKey
+        });
+      } else {
+        comp = composeOfflineLyrics({
+          type: currentMode,
+          theme: currentTheme,
+          keywords,
+          artistStyle
+        });
+      }
+
+      renderComposition(comp);
+    } catch (err) {
+      console.error(err);
+      alert('Error composing lyrics');
+    } finally {
+      btnCompose.innerHTML = originalText;
+      btnCompose.disabled = false;
+    }
+  });
+
+  // --- Copy & Download Actions ---
+  btnCopyLyrics.addEventListener('click', () => {
+    if (!currentComposition) return;
+    navigator.clipboard.writeText(currentComposition.rawText);
+    const original = btnCopyLyrics.innerHTML;
+    btnCopyLyrics.innerHTML = '<span>✓</span> Copied!';
+    setTimeout(() => { btnCopyLyrics.innerHTML = original; }, 2000);
+  });
+
+  btnDownloadTxt.addEventListener('click', () => {
+    if (!currentComposition) return;
+    const blob = new Blob([currentComposition.rawText], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `${currentComposition.title.toLowerCase().replace(/[^a-z0-9]/g, '-')}.txt`;
+    a.click();
+    URL.revokeObjectURL(url);
+  });
+
+  // Initial Composition on Page Load
+  window.addEventListener('DOMContentLoaded', () => {
+    const initial = composeOfflineLyrics({
+      type: 'rap',
+      theme: 'hard',
+      keywords: 'late night hustle, neon city, breaking limits, relentless grind, pure vision'
+    });
+    renderComposition(initial);
+  });
+</script>
+

@@ -1,0 +1,18 @@
+{
+  "name": "lyric-write-beat-studio",
+  "type": "module",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "astro dev --host",
+    "start": "astro dev --host",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "astro": "^5.4.2"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.3.3",
+    "tailwindcss": "^4.3.3"
+  }
+}
